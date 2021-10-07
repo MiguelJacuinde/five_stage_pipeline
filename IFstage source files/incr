@@ -1,0 +1,50 @@
+#! /usr/local/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+S_0x7fa72c407ee0 .scope module, "test_incr" "test_incr" 2 1;
+ .timescale 0 0;
+v0x7fa72c41c050_0 .var "A", 31 0;
+v0x7fa72c41c110_0 .net "IncrOut", 31 0, L_0x7fa72c504420;  1 drivers
+E_0x7fa72c40aa60 .event edge, v0x7fa72c41bed0_0;
+S_0x7fa72c4070f0 .scope module, "incr1" "incrementer" 2 9, 3 1 0, S_0x7fa72c407ee0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "pcin";
+    .port_info 1 /OUTPUT 32 "pcout";
+L_0x7fa72c663008 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x7fa72c40a7c0_0 .net/2u *"_ivl_0", 31 0, L_0x7fa72c663008;  1 drivers
+v0x7fa72c41bed0_0 .net "pcin", 31 0, v0x7fa72c41c050_0;  1 drivers
+v0x7fa72c41bf70_0 .net "pcout", 31 0, L_0x7fa72c504420;  alias, 1 drivers
+L_0x7fa72c504420 .arith/sum 32, v0x7fa72c41c050_0, L_0x7fa72c663008;
+    .scope S_0x7fa72c407ee0;
+T_0 ;
+    %delay 10, 0;
+    %pushi/vec4 3, 0, 32;
+    %store/vec4 v0x7fa72c41c050_0, 0, 32;
+    %delay 10, 0;
+    %pushi/vec4 15, 0, 32;
+    %store/vec4 v0x7fa72c41c050_0, 0, 32;
+    %delay 10, 0;
+    %pushi/vec4 64, 0, 32;
+    %store/vec4 v0x7fa72c41c050_0, 0, 32;
+    %delay 5, 0;
+    %end;
+    .thread T_0;
+    .scope S_0x7fa72c407ee0;
+T_1 ;
+    %wait E_0x7fa72c40aa60;
+    %delay 1, 0;
+    %vpi_call 2 22 "$display", "Time = %0d\011A=%0d\011IncrOut=%0d", $time, v0x7fa72c41c050_0, v0x7fa72c41c110_0 {0 0 0};
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb-incr.v";
+    "incr.v";

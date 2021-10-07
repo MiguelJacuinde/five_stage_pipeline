@@ -1,0 +1,70 @@
+#! /usr/local/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+S_0x7fc054f070b0 .scope module, "tb_five_bit_mux" "tb_five_bit_mux" 2 1;
+ .timescale 0 0;
+v0x7fc054f176b0_0 .var "A", 4 0;
+v0x7fc054f17760_0 .var "B", 4 0;
+v0x7fc054f17810_0 .net "Y", 4 0, L_0x7fc054f17990;  1 drivers
+v0x7fc054f178e0_0 .var "sel", 0 0;
+E_0x7fc054f04fc0 .event edge, v0x7fc054f174f0_0, v0x7fc054f17440_0, v0x7fc054f073f0_0;
+S_0x7fc054f07220 .scope module, "mux1" "five_bit_muxout" 2 8, 3 1 0, S_0x7fc054f070b0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 5 "y";
+    .port_info 1 /INPUT 5 "a";
+    .port_info 2 /INPUT 5 "b";
+    .port_info 3 /INPUT 1 "sel";
+v0x7fc054f073f0_0 .net "a", 4 0, v0x7fc054f176b0_0;  1 drivers
+v0x7fc054f17440_0 .net "b", 4 0, v0x7fc054f17760_0;  1 drivers
+v0x7fc054f174f0_0 .net "sel", 0 0, v0x7fc054f178e0_0;  1 drivers
+v0x7fc054f175a0_0 .net "y", 4 0, L_0x7fc054f17990;  alias, 1 drivers
+L_0x7fc054f17990 .functor MUXZ 5, v0x7fc054f17760_0, v0x7fc054f176b0_0, v0x7fc054f178e0_0, C4<>;
+    .scope S_0x7fc054f070b0;
+T_0 ;
+    %pushi/vec4 10, 0, 5;
+    %store/vec4 v0x7fc054f176b0_0, 0, 5;
+    %pushi/vec4 21, 0, 5;
+    %store/vec4 v0x7fc054f17760_0, 0, 5;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fc054f178e0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 5;
+    %store/vec4 v0x7fc054f176b0_0, 0, 5;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fc054f178e0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 31, 0, 5;
+    %store/vec4 v0x7fc054f17760_0, 0, 5;
+    %delay 5, 0;
+    %pushi/vec4 5, 0, 5;
+    %store/vec4 v0x7fc054f176b0_0, 0, 5;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fc054f178e0_0, 0, 1;
+    %pushi/vec4 29, 0, 5;
+    %store/vec4 v0x7fc054f17760_0, 0, 5;
+    %delay 5, 0;
+    %pushi/vec4 1, 1, 1;
+    %store/vec4 v0x7fc054f178e0_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0x7fc054f070b0;
+T_1 ;
+    %wait E_0x7fc054f04fc0;
+    %delay 1, 0;
+    %vpi_call 2 28 "$display", "At t = %0d sel = %b A = %b B = %b Y = %b", $time, v0x7fc054f178e0_0, v0x7fc054f176b0_0, v0x7fc054f17760_0, v0x7fc054f17810_0 {0 0 0};
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb-five_bit_mux.v";
+    "five_bit_muxout.v";
